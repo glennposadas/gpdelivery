@@ -15,6 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        // Setup root screen.
+        
+        let deliveriesController = DeliveriesViewController()
+        let navigationController = UINavigationController(rootViewController: deliveriesController)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         
         return true
     }
