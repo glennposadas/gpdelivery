@@ -10,7 +10,10 @@ import Alamofire
 import Moya
 import SwiftyJSON
 
-let deliveryServiceProvider = MoyaProvider<DeliveryService>(manager: GPDeliveryAlamofireManager.shared)
+let deliveryServiceProvider = MoyaProvider<DeliveryService>(
+    manager: GPDeliveryAlamofireManager.shared,
+    plugins: [CachePolicyPlugin()]
+)
 
 enum DeliveryService {
     case getDeliveries()
@@ -49,6 +52,19 @@ extension DeliveryService: TargetType {
         return ["Content-type" : "application/json"]
     }
 }
+
+// MARK: - CatchePolicyGettable
+
+extension DeliveryService: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        switch self {
+        case .getDeliveries: return .reloadIgnoringCacheData
+        }
+    }
+}
+
+
+
 
 
 

@@ -10,4 +10,5 @@ import UIKit
 
 extension UIImage {
     static var placeholder = UIImage(named: "ic_placeholder")!
+    static var brokenRobot = UIImage(named: "img_broken_robot")!
 }

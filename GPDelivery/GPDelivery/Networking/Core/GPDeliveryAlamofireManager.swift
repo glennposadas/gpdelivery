@@ -11,12 +11,17 @@ import Foundation
 
 class GPDeliveryAlamofireManager: Alamofire.SessionManager {
     
+    /**
+     * Ref: https://nshipster.com/nsurlcache/
+     * Moya does not respect requestCachePolicy.
+     * We'll implement this instead: https://stackoverflow.com/a/50728333/3231194
+     */
     static let shared: GPDeliveryAlamofireManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
-        configuration.timeoutIntervalForRequest = 20
-        configuration.timeoutIntervalForResource = 20
-        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        configuration.timeoutIntervalForRequest = 15
+        configuration.timeoutIntervalForResource = 15
+        // configuration.requestCachePolicy = .returnCacheDataElseLoad
         return GPDeliveryAlamofireManager(configuration: configuration)
     }()
 }

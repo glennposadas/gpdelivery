@@ -29,6 +29,7 @@
 		4574C1D721018AFD00252808 /* DeliveryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4574C1D621018AFD00252808 /* DeliveryDetailsViewController.swift */; };
 		4574C1D921018B2800252808 /* DeliveryDetailsViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4574C1D821018B2800252808 /* DeliveryDetailsViewController+SetupViews.swift */; };
 		4574C1DB2101D2BA00252808 /* GPDeliveryAlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4574C1DA2101D2BA00252808 /* GPDeliveryAlamofireManager.swift */; };
+		4574C1DD2101E52A00252808 /* CachePolicyPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4574C1DC2101E52A00252808 /* CachePolicyPlugin.swift */; };
 		B790776E176C6BBC60D718AA /* Pods_GPDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F69348760910F9797909A9ED /* Pods_GPDelivery.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		4574C1D621018AFD00252808 /* DeliveryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailsViewController.swift; sourceTree = "<group>"; };
 		4574C1D821018B2800252808 /* DeliveryDetailsViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryDetailsViewController+SetupViews.swift"; sourceTree = "<group>"; };
 		4574C1DA2101D2BA00252808 /* GPDeliveryAlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPDeliveryAlamofireManager.swift; sourceTree = "<group>"; };
+		4574C1DC2101E52A00252808 /* CachePolicyPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePolicyPlugin.swift; sourceTree = "<group>"; };
 		666C3BA5924DF0720AF35BA7 /* Pods-GPDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPDelivery.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-GPDelivery/Pods-GPDelivery.debug.xcconfig"; sourceTree = "<group>"; };
 		6962917AED944400E0471F62 /* Pods-GPDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPDelivery.release.xcconfig"; path = "../Pods/Target Support Files/Pods-GPDelivery/Pods-GPDelivery.release.xcconfig"; sourceTree = "<group>"; };
 		AD8D1C4C825D09D26DF1ACC5 /* Pods_GPDeliveryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPDeliveryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				4574C1DA2101D2BA00252808 /* GPDeliveryAlamofireManager.swift */,
+				4574C1DC2101E52A00252808 /* CachePolicyPlugin.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4574C1C221009CD100252808 /* BaseTableViewCell.swift in Sources */,
+				4574C1DD2101E52A00252808 /* CachePolicyPlugin.swift in Sources */,
 				4574C1CE2101612D00252808 /* UIImage+GPDelivery.swift in Sources */,
 				4574C1DB2101D2BA00252808 /* GPDeliveryAlamofireManager.swift in Sources */,
 				4574C1D0210161A600252808 /* UIColor+GPDelivery.swift in Sources */,

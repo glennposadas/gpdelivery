@@ -39,6 +39,19 @@ class DeliveriesViewController: BaseViewController {
         return refreshControl
     }()
     
+    internal lazy var view_RobotContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.isHidden = true
+        return view
+    }()
+    
+    internal lazy var view_LoadingContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+
     // MARK: Data Properties
     
     private var deliveryViewModels = [DeliveryViewModel]()
@@ -54,26 +67,44 @@ class DeliveriesViewController: BaseViewController {
     
     // MARK: Network Calls
     
-    @objc private func getDeliveries() {
+    @objc internal func getDeliveries() {
         /** Flow:
          *  500 (internal server error) - Show up the broken robot design.
          *  200 - Show the new data.
-         *  504/Timeout/Other http code, perhaps - No server or timeout, load up the cached data.
+         *  1001, 504/Timeout/Other http code, perhaps - No server or timeout, load up the cached data.
          */
         
+        // TODO: Improve toggling of views' visibility.
+        
+        self.view_LoadingContainer.isHidden = false
+        self.tableView.isHidden = true
+        self.view_RobotContainer.isHidden = true
+        
+        print("Get Deliveries... 🤓🤓🤓")
         deliveryServiceProvider.request(.getDeliveries()) { (result) in
             switch result {
             case let .success(moyaResponse):
+                print("Success request! ✅✅✅ | Cache Policy: \(String(describing: result.value?.request?.cachePolicy.rawValue))")
+                
                 let jsonObj = JSON(moyaResponse.data)
                 if let jsonObjArray = jsonObj.array {
                     self.deliveryViewModels = jsonObjArray.map { DeliveryViewModel(Delivery(json: $0)) }
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
+                    
+                    self.view_LoadingContainer.isHidden = true
+                    self.tableView.isHidden = false
+                    self.view_RobotContainer.isHidden = true
                 }
                 
             case let .failure(error):
-                // Show error, or custom error...
-                self.showAlert(title: "GPDelivery", message: "Error: \(error.localizedDescription)", okayButtonTitle: "OK", withBlock: nil)
+                print("Failure! \(String(describing: (result.error! as NSError).code)) \(error.localizedDescription) ❎❎❎ | Cache Policy: \(String(describing: result.value?.request?.cachePolicy.rawValue))")
+                
+                self.view_LoadingContainer.isHidden = true
+                self.tableView.isHidden = true
+                UIView.transition(with: self.view_RobotContainer, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                    self.view_RobotContainer.isHidden = false
+                })
             }
         }
     }
