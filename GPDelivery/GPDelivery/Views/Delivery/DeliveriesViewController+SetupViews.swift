@@ -84,7 +84,7 @@ extension DeliveriesViewController {
         self.view_RobotContainer.addSubview(imageView_BrokenRobot)
         imageView_BrokenRobot.snp.makeConstraints { (make) in
             make.width.equalTo(280.0)
-            make.height.equalTo(330.0)
+            self.constraint_ImageViewRobotHeight = make.height.equalTo(330.0).constraint
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
@@ -98,9 +98,9 @@ extension DeliveriesViewController {
         self.view_RobotContainer.addSubview(button_Refresh)
         button_Refresh.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
-            make.height.equalTo(50.0)
-            make.top.equalTo(label_Message.snp.bottom).offset(15.0)
-            make.bottom.equalToSuperview().inset(30.0)
+            make.height.equalTo(44.0)
+            make.top.equalTo(label_Message.snp.bottom).offset(8.0)
+            make.bottom.equalToSuperview().inset(40.0)
         }
     }
 }

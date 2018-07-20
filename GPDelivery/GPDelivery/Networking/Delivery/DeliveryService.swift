@@ -7,13 +7,11 @@
 //
 
 import Alamofire
+import EFInternetIndicator
 import Moya
 import SwiftyJSON
 
-let deliveryServiceProvider = MoyaProvider<DeliveryService>(
-    manager: GPDeliveryAlamofireManager.shared,
-    plugins: [CachePolicyPlugin()]
-)
+let deliveryServiceProvider = MoyaProvider<DeliveryService>(plugins: [CachePolicyPlugin()])
 
 enum DeliveryService {
     case getDeliveries()
@@ -58,7 +56,7 @@ extension DeliveryService: TargetType {
 extension DeliveryService: CachePolicyGettable {
     var cachePolicy: URLRequest.CachePolicy {
         switch self {
-        case .getDeliveries: return .reloadIgnoringCacheData
+        case .getDeliveries: return .useProtocolCachePolicy
         }
     }
 }

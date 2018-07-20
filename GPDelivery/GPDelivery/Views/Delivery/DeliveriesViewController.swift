@@ -7,6 +7,7 @@
 //
 
 import Moya
+import SnapKit
 import SwiftyJSON
 import UIKit
 
@@ -55,6 +56,7 @@ class DeliveriesViewController: BaseViewController {
     // MARK: Data Properties
     
     private var deliveryViewModels = [DeliveryViewModel]()
+    internal var constraint_ImageViewRobotHeight: Constraint?
     
     // MARK: - Functions
     // MARK: Navigations
@@ -80,33 +82,35 @@ class DeliveriesViewController: BaseViewController {
         self.tableView.isHidden = true
         self.view_RobotContainer.isHidden = true
         
-        print("Get Deliveries... 🤓🤓🤓")
         deliveryServiceProvider.request(.getDeliveries()) { (result) in
             switch result {
             case let .success(moyaResponse):
-                print("Success request! ✅✅✅ | Cache Policy: \(String(describing: result.value?.request?.cachePolicy.rawValue))")
-                
-                let jsonObj = JSON(moyaResponse.data)
-                if let jsonObjArray = jsonObj.array {
-                    self.deliveryViewModels = jsonObjArray.map { DeliveryViewModel(Delivery(json: $0)) }
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
-                    
-                    self.view_LoadingContainer.isHidden = true
-                    self.tableView.isHidden = false
-                    self.view_RobotContainer.isHidden = true
+                if moyaResponse.statusCode == 200 {
+                    let jsonObj = JSON(moyaResponse.data)
+                    if let jsonObjArray = jsonObj.array {
+                        self.deliveryViewModels = jsonObjArray.map { DeliveryViewModel(Delivery(json: $0)) }
+                        self.refreshControl.endRefreshing()
+                        self.tableView.reloadData()
+                        
+                        self.view_LoadingContainer.isHidden = true
+                        self.tableView.isHidden = false
+                        self.view_RobotContainer.isHidden = true
+                    }
+                } else if moyaResponse.statusCode == 500 {
+                    self.showFailure()
                 }
                 
-            case let .failure(error):
-                print("Failure! \(String(describing: (result.error! as NSError).code)) \(error.localizedDescription) ❎❎❎ | Cache Policy: \(String(describing: result.value?.request?.cachePolicy.rawValue))")
-                
-                self.view_LoadingContainer.isHidden = true
-                self.tableView.isHidden = true
-                UIView.transition(with: self.view_RobotContainer, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                    self.view_RobotContainer.isHidden = false
-                })
+            case .failure: self.showFailure()
             }
         }
+    }
+    
+    private func showFailure() {
+        self.view_LoadingContainer.isHidden = true
+        self.tableView.isHidden = true
+        UIView.transition(with: self.view_RobotContainer, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.view_RobotContainer.isHidden = false
+        })
     }
     
     // MARK: Overrides
@@ -117,6 +121,25 @@ class DeliveriesViewController: BaseViewController {
         self.setupViews()
         self.getDeliveries()
     }
+    
+    /** Handle orientation changes.
+     */
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        var newHeight: CGFloat = 0
+        let isPad = UIDevice.current.model.hasPrefix("iPad")
+        
+        if UIDevice.current.orientation.isLandscape {
+            newHeight = isPad ? 350.0 : 220.0
+            newHeight = UIScreen.main.bounds.height == 568.0 ? 150.0 : newHeight
+        } else {
+            newHeight = isPad ? 550.0 : 330.0
+        }
+        
+        self.constraint_ImageViewRobotHeight?.update(offset: newHeight)
+        self.view.layoutIfNeeded()
+    }
+
 }
 
 // MARK: - UITableViewDelegate
