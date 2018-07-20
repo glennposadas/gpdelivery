@@ -27,7 +27,7 @@ class BaseTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.separatorInset = UIEdgeInsets(top: 0, left: 100.0, bottom: 0, right: 0)
+        self.separatorInset = UIEdgeInsets(top: 0, left: 50.0, bottom: 0, right: 0)
         self.backgroundColor = .white
         self.accessoryType = .disclosureIndicator
     }

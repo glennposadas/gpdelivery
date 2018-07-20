@@ -12,7 +12,36 @@ class BaseViewController: UIViewController {
 
     // MARK: - Properties
     
+    public typealias GPDeliveryAlertCallBack = (_ userDidTapOk: Bool) -> Void
+    
     // MARK: - Functions
+    
+    func showAlert(
+        title: String,
+        message: String? = nil,
+        okayButtonTitle: String,
+        cancelButtonTitle: String? = nil,
+        withBlock completion: GPDeliveryAlertCallBack?) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: okayButtonTitle, style: .default) { _ in
+            completion?(true)
+        }
+        alertController.addAction(okAction)
+        
+        if let cancelButtonTitle = cancelButtonTitle {
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .default) { _ in
+                completion?(false)
+            }
+            alertController.addAction(cancelAction)
+        }
+        
+        alertController.view.tintColor = .black
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
     // MARK: Overrides
     
     override func viewDidLoad() {

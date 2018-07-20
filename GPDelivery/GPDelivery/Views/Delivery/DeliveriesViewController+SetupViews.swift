@@ -11,6 +11,11 @@ import UIKit
 
 extension DeliveriesViewController {
     internal func setupViews() {
+        self.title = "Deliveries"
         
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
 }
