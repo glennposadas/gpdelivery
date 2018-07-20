@@ -15,7 +15,7 @@ struct DeliveryViewModel {
     
     var deliveryTitle: String
     var deliveryAddress: String
-    var coordinates: CLLocationCoordinate2D?
+    var coordinate: CLLocationCoordinate2D?
     var imageResource: ImageResource?
     
     // MARK: - Functions
@@ -26,7 +26,7 @@ struct DeliveryViewModel {
         
         if let latitude = delivery.location?.lat,
             let longitude = delivery.location?.lng {
-            self.coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+            self.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
         }
         
         if let urlString = delivery.imageUrl,

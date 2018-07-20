@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (4.7.3)
+  - EFInternetIndicator (0.4.0):
+    - EFInternetIndicator/Interface (= 0.4.0)
+  - EFInternetIndicator/Interface (0.4.0):
+    - SwiftMessages
   - Kingfisher (4.8.0)
   - Moya (11.0.2):
     - Moya/Core (= 11.0.2)
@@ -8,9 +12,13 @@ PODS:
     - Result (~> 3.0)
   - Result (3.2.4)
   - SnapKit (4.0.0)
+  - SwiftMessages (4.1.4):
+    - SwiftMessages/App (= 4.1.4)
+  - SwiftMessages/App (4.1.4)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
+  - EFInternetIndicator
   - Kingfisher
   - Moya
   - SnapKit
@@ -19,20 +27,24 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - EFInternetIndicator
     - Kingfisher
     - Moya
     - Result
     - SnapKit
+    - SwiftMessages
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  EFInternetIndicator: a6077679e15191889a783a06624390b73e8109dc
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 49eadeab1a258a0da84e33aa3187e7d035ad9e70
+PODFILE CHECKSUM: ec16525bf3d4fc993e51dd1fa5d6a65eb53260eb
 
 COCOAPODS: 1.5.3

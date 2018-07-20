@@ -11,7 +11,9 @@ import UIKit
 
 extension DeliveriesViewController {
     internal func setupViews() {
-        self.title = "Deliveries"
+        self.title = "My Deliveries"
+        
+        self.tableView.addSubview(self.refreshControl)
         
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in

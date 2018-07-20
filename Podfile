@@ -10,6 +10,7 @@ inhibit_all_warnings!
 
   target 'GPDelivery' do
     
+    pod 'EFInternetIndicator'           # Reachability
     pod 'Kingfisher'                    # Image loading with built-in caching system.
     pod 'Moya'                          # Networking Abstraction Layer
     pod 'SnapKit'                       # Constraint Programmatically.

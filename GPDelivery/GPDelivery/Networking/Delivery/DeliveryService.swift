@@ -10,7 +10,7 @@ import Alamofire
 import Moya
 import SwiftyJSON
 
-let deliveryServiceProvider = MoyaProvider<DeliveryService>()
+let deliveryServiceProvider = MoyaProvider<DeliveryService>(manager: GPDeliveryAlamofireManager.shared)
 
 enum DeliveryService {
     case getDeliveries()
@@ -20,7 +20,7 @@ enum DeliveryService {
 
 extension DeliveryService: TargetType {
     var baseURL: URL {
-        return URL(string: "http://localhost:3000")!
+        return URL(string: "http://localhost:8080")!
     }
     
     var path: String {

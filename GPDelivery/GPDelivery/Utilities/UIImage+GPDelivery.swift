@@ -9,5 +9,5 @@
 import UIKit
 
 extension UIImage {
-    static var placeholder = UIImage(named: "gp-placeholder")!
+    static var placeholder = UIImage(named: "ic_placeholder")!
 }

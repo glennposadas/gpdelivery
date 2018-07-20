@@ -17,6 +17,7 @@ class DeliveryTableViewCell: BaseTableViewCell {
     private lazy var imageView_DeliveryImage: UIImageView = {
         let imageView = UIImageView(image: .placeholder)
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -55,14 +56,19 @@ class DeliveryTableViewCell: BaseTableViewCell {
         self.addSubview(self.imageView_DeliveryImage)
         self.imageView_DeliveryImage.snp.makeConstraints { (make) in
             make.width.height.equalTo(40.0)
-            make.top.bottom.leading.equalToSuperview().inset(10.0)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(self.safeAreaLayoutGuide.snp.leadingMargin).offset(10.0)
+            } else {
+                make.leading.equalToSuperview().inset(10.0)
+            }
+            make.top.bottom.equalToSuperview().inset(10.0)
         }
         
         self.addSubview(self.label_DeliveryTitle)
         self.label_DeliveryTitle.snp.makeConstraints { (make) in
             make.top.equalTo(self.imageView_DeliveryImage).offset(5.0)
             make.leading.equalTo(self.imageView_DeliveryImage.snp.trailing).offset(10.0)
-            make.trailing.equalToSuperview().inset(16.0)
+            make.trailing.equalToSuperview().inset(20.0)
         }
         
         self.addSubview(self.label_DeliveryAddress)
